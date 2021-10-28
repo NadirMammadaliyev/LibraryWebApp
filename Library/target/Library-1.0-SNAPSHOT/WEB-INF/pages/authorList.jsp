@@ -1,0 +1,49 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: Asus
+  Date: 05.08.2021
+  Time: 23:13
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<script type="text/javascript">
+    $(function () {
+        $('#authorTableId').DataTable();
+    });
+</script>
+<style>
+    .display.DataTable {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 13px;
+    }
+</style>
+
+<table id="authorTableId" class="display" style="width: 100%">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <c:if test="${loginUser.role.roleName eq 'ROLE_ADMIN' or  loginUser.role.roleName eq 'ROLE_LIBRARIAN' or loginUser.role.roleName eq 'ROLE_DIRECTOR'}">
+            <th>Edit</th>
+            <th>Delete</th>
+        </c:if>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach items="${authorList}" var="al">
+        <tr>
+        <td>${al.id}</td>
+        <td>${al.name}</td>
+        <td>${al.surname}</td>
+        <c:if test="${loginUser.role.roleName eq 'ROLE_ADMIN' or  loginUser.role.roleName eq 'ROLE_LIBRARIAN' or loginUser.role.roleName eq 'ROLE_DIRECTOR'}">
+            <td><a href="javascript: editAuthor('${al.id}');"><img width="20px" src="images/edit.png"></a></a> </td>
+            <td><a href="javascript: deleteAuthor('${al.id}','${al.name} ${al.surname}');"><img width="20px"
+                                                                                                src="images/delete.png"></a>
+            </td>
+            </tr>
+        </c:if>
+    </c:forEach>
+    </tbody>
+</table>

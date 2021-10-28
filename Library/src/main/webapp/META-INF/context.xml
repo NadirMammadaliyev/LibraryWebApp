@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Context>
+
+    <Resource name="jdbc/library"
+              auth="Container"
+              type="javax.sql.DataSource"
+              driverClassName="oracle.jdbc.driver.OracleDriver"
+              url="jdbc:oracle:thin:@localhost:1521:XE"
+              username="LIBRARY_V2"
+              password="12345"
+              maxActive="100"
+              maxIdle="20"
+              minIdle="5"
+              maxWait="10000"/>
+
+</Context>
